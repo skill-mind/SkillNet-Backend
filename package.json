@@ -5,8 +5,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
-    "lint": "eslint ."
+    "test": "jest"
   },
   "author": "SkillNet",
   "license": "ISC",

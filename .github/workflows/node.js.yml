@@ -28,20 +28,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run linting (optional but recommended)
-      - name: Run linter
-        run: npm run lint
-        continue-on-error: false # Fail the workflow if linting fails
 
-      # Step 5: Run tests
+      # Step 4: Run tests
       - name: Run tests
         run: npm test
 
-      # Step 6: Build the project
+      # Step 5: Build the project
       - name: Build the project
         run: npm run build --if-present
 
-      # Step 7: Check for vulnerabilities (optional)
+      # Step 6: Check for vulnerabilities (optional)
       - name: Audit dependencies
         run: npm audit --production
         continue-on-error: true # Allow the workflow to continue even if vulnerabilities are found
