@@ -1,31 +1,47 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master # Run the CI on pushes to the main branch
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master # Run CI on pull requests targeting main
 
 jobs:
-  build:
-
+  build-and-test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16 # Replace with your project's Node.js version
+          cache: 'npm' # Cache npm dependencies
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run linting (optional but recommended)
+      - name: Run linter
+        run: npm run lint
+        continue-on-error: false # Fail the workflow if linting fails
+
+      # Step 5: Run tests
+      - name: Run tests
+        run: npm test
+
+      # Step 6: Build the project
+      - name: Build the project
+        run: npm run build --if-present
+
+      # Step 7: Check for vulnerabilities (optional)
+      - name: Audit dependencies
+        run: npm audit --production
+        continue-on-error: true # Allow the workflow to continue even if vulnerabilities are found
