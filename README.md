@@ -23,7 +23,7 @@ Thank you for your interest in contributing to **SkillNet**! SkillNet is an inno
 We welcome contributions in various forms, including bug fixes, feature implementations, and documentation improvements.
 
 ### 1. Fork the Repository
-1. Navigate to the [SkillNet-Backend ]
+1. Navigate to the
 (https://github.com/skill-mind/SkillNet-Backend).
 2. Click the **Fork** button to create your copy of the repository.
 
