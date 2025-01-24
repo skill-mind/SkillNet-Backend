@@ -1,5 +1,5 @@
 import AuthService from '../services/auth.service.js';
-import validateRegistration from '../utils/validation.js';
+import validateRegistration from '../validation/auth.validation.js';
 
 class AuthController {
   constructor() {
@@ -18,7 +18,6 @@ class AuthController {
         user: {
           id: user.id,
           role: user.role,
-          username: user.username,
           walletAddress: user.walletAddress
         },
         token
@@ -40,7 +39,6 @@ class AuthController {
         user: {
           id: user.id,
           role: user.role,
-          username: user.username,
           walletAddress: user.walletAddress
         },
         token

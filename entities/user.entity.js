@@ -7,49 +7,51 @@ const UserEntity = new EntitySchema({
     id: {
       primary: true,
       type: 'int',
-      generated: true
+      generated: true,
     },
     walletAddress: {
       type: 'varchar',
-      unique: true
+      unique: true,
     },
     role: {
       type: 'varchar',
-      length: 20
+      length: 20,
     },
-    fullName: {
+    // Generalizes to job seeker/employer/institution name
+    name: {
       type: 'varchar',
-      length: 100
-    },
-    username: {
-      type: 'varchar',
-      unique: true,
-      length: 30
+      length: 100,
     },
     email: {
       type: 'varchar',
-      unique: true
+      unique: true,
     },
+    // Tutor-specific (nullable)
     title: {
       type: 'varchar',
-      length: 100
+      length: 100,
+      nullable: true,
     },
-    experience: {
-      type: 'text'
+    // Used as bio (Job Seeker, Tutor, Institution)/description (Company)
+    bio: {
+      type: 'text',
+      nullable: true,
     },
+    // Tutor-specific (nullable)
     skills: {
-      type: 'simple-array'
+      type: 'simple-array',
+      nullable: true,
     },
     createdAt: {
       type: 'timestamp',
-      createDate: true
-    }
+      createDate: true,
+    },
   },
   indices: [
     { columns: ['walletAddress'] },
-    { columns: ['username'] },
-    { columns: ['email'] }
-  ]
+    { columns: ['email'] },
+    { columns: ['role'] }, // Index role if querying by it frequently
+  ],
 });
 
 export default UserEntity;

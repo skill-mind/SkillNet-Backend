@@ -7,11 +7,10 @@ class AuthService {
     this.userRepository = AppDataSource.getRepository('User');
   }
 
-  async checkExistingUser(walletAddress, username, email) {
+  async checkExistingUser(walletAddress, email) {
     const existingUser = await this.userRepository.findOne({
       where: [
         { walletAddress },
-        { username },
         { email }
       ]
     });
@@ -19,7 +18,6 @@ class AuthService {
     if (existingUser) {
       const conflicts = [];
       if (existingUser.walletAddress === walletAddress) conflicts.push('wallet');
-      if (existingUser.username === username) conflicts.push('username');
       if (existingUser.email === email) conflicts.push('email');
       return conflicts;
     }
@@ -43,7 +41,6 @@ class AuthService {
   async register(userData) {
     const conflicts = await this.checkExistingUser(
       userData.walletAddress,
-      userData.username,
       userData.email
     );
 
@@ -78,7 +75,6 @@ class AuthService {
     return {
       id: user.id,
       role: user.role,
-      username: user.username,
       walletAddress: user.walletAddress,
       email: user.email,
       createdAt: user.createdAt
