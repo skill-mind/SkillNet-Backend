@@ -7,6 +7,14 @@ class AuthService {
     this.userRepository = AppDataSource.getRepository('User');
   }
 
+  async walletExists(walletAddress) {
+    const user = await this.userRepository.findOne({
+      where: { walletAddress },
+      select: ['id']
+    });
+    return !!user;
+  }
+
   async checkExistingUser(walletAddress, email) {
     const existingUser = await this.userRepository.findOne({
       where: [

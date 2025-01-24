@@ -6,6 +6,16 @@ class AuthController {
     this.authService = new AuthService();
   }
 
+  async checkWallet(req, res) {
+    try {
+      const { walletAddress } = req.params;
+      const exists = await this.authService.walletExists(walletAddress);
+      res.json({ exists });
+    } catch (error) {
+      this.handleError(res, error);
+    }
+  }
+
   async signup(req, res) {
     try {
       const { error } = validateRegistration(req.body);
