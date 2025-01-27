@@ -2,6 +2,8 @@ import 'dotenv/config'
 import AppDataSource from "./config/config.js";
 import express, { json } from 'express';
 import authRouter from './routes/auth.routes.js';
+import jobRoutes from './routes/jobRoutes.js';
+
 import helmet from 'helmet';
 import cors from 'cors';
 
@@ -20,7 +22,8 @@ AppDataSource.initialize()
     
     // Routes
     app.use('/api/auth', authRouter);
-    
+    app.use('/api/jobs', jobRoutes);
+
     // Error handling
     app.use((err, req, res, next) => {
       console.error(err.stack);
