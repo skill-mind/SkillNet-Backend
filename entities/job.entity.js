@@ -37,6 +37,14 @@ const Job = new EntitySchema({
       type: 'varchar',
       nullable: true
     },
+    banner: {
+      type: 'varchar',
+      nullable: true
+    },
+    bannerPublicId: {
+      type: 'varchar',
+      nullable: true
+    },
     createdAt: {
       type: 'timestamp',
       createDate: true
