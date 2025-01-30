@@ -1,41 +1,33 @@
 import { EntitySchema } from "typeorm"
 
-export const User = new EntitySchema({
-  name: "User",
-  tableName: "users",
+export const Course = new EntitySchema({
+  name: "Course",
+  tableName: "courses",
   columns: {
     id: {
-      primary: true,
       type: "int",
+      primary: true,
       generated: true,
-    },
-    walletAddress: {
-      type: "varchar",
-      unique: true,
-    },
-    role: {
-      type: "varchar",
-      length: 20,
-    },
-    name: {
-      type: "varchar",
-      length: 100,
-    },
-    email: {
-      type: "varchar",
-      unique: true,
     },
     title: {
       type: "varchar",
-      length: 100,
-      nullable: true,
+      unique: true,
+      nullable: false,
     },
-    bio: {
+    description: {
       type: "text",
       nullable: true,
     },
-    skills: {
-      type: "simple-array",
+    instructorId: {
+      type: "int",
+      nullable: false,
+    },
+    level: {
+      type: "varchar",
+      nullable: true,
+    },
+    duration: {
+      type: "int",
       nullable: true,
     },
     createdAt: {
@@ -44,17 +36,17 @@ export const User = new EntitySchema({
     },
   },
   relations: {
-    courses: {
+    users: {
       type: "many-to-many",
-      target: "Course",
+      target: "User",
       joinTable: {
         name: "user_courses",
         joinColumn: {
-          name: "userId",
+          name: "courseId",
           referencedColumnName: "id",
         },
         inverseJoinColumn: {
-          name: "courseId",
+          name: "userId",
           referencedColumnName: "id",
         },
       },
@@ -62,9 +54,8 @@ export const User = new EntitySchema({
     userCourses: {
       type: "one-to-many",
       target: "UserCourse",
-      inverseSide: "user",
+      inverseSide: "course",
     },
   },
-  indices: [{ columns: ["walletAddress"] }, { columns: ["email"] }, { columns: ["role"] }],
 })
 

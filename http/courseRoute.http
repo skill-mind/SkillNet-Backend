@@ -1,0 +1,46 @@
+@baseUrl = http://localhost:3000/api/courses
+
+### Create a new course
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "title": "Introduction to Blockchain",
+  "description": "Learn the basics of blockchain technology",
+  "instructorId": 1,
+  "level": "beginner",
+  "duration": 5
+}
+
+### Get all courses
+GET {{baseUrl}}
+
+### Get a specific course
+GET {{baseUrl}}/1
+
+### Update a course
+PUT {{baseUrl}}/1
+Content-Type: application/json
+{
+  "title": "Advanced Blockchain Concepts",
+  "description": "Dive deeper into blockchain technology and its applications"
+}
+
+### Delete a course
+DELETE {{baseUrl}}/1
+
+### Create another course
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "title": "Advance Smart Contract Development",
+  "description": "Learn how to create and deploy smart contracts on blockchain platforms",
+  "instructorId": 2,
+  "level": "beginner",
+  "duration": 5
+}
+
+### Get all courses after operations
+GET {{baseUrl}}
+
