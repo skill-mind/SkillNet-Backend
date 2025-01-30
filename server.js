@@ -30,11 +30,14 @@ AppDataSource.initialize()
       res.status(500).json({ error: 'Internal server error' });
     });
     
+    // Start the server and listen on the specified port
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
   })
+  // Catch and handle database connection erro
   .catch((error) => {
     console.error('Database connection failed:', error);
+     // Exit the process with a failure status code
     process.exit(1);
   });
