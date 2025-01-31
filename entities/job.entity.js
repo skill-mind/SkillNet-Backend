@@ -59,4 +59,4 @@ const Job = new EntitySchema({
   ]
 });
 
-export default Job
+export default Job;

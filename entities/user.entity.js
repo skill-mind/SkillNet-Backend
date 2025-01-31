@@ -1,6 +1,6 @@
-import { EntitySchema } from "typeorm"
+import { EntitySchema } from "typeorm";
 
-const User = new EntitySchema({
+const UserEntity = new EntitySchema({
   name: "User",
   tableName: "users",
   columns: {
@@ -65,7 +65,11 @@ const User = new EntitySchema({
       inverseSide: "user",
     },
   },
-  indices: [{ columns: ["walletAddress"] }, { columns: ["email"] }, { columns: ["role"] }],
+  indices: [
+    { columns: ['walletAddress'] },
+    { columns: ['email'] },
+    { columns: ['role'] }, // Index role if querying by it frequently
+  ],
 })
 
-export default User
+export default UserEntity

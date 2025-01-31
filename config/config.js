@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 import { DataSource } from "typeorm"
 import { Course } from "../entities/course.entity.js"
 import { UserCourse } from "../entities/userCourse.entity.js"
-import  User  from "../entities/user.entity.js"
+import  UserEntity  from "../entities/user.entity.js"
 import Job  from "../entities/job.entity.js"
 
 dotenv.config()
@@ -16,10 +16,10 @@ const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: true,
-  entities: [User, Course, UserCourse, Job],
+  entities: [UserEntity, Course, UserCourse, Job],
   subscribers: [],
   migrations: [],
 })
 
-export default AppDataSource
+export default AppDataSource;
 
