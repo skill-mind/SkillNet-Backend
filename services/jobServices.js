@@ -1,5 +1,5 @@
 import AppDataSource from "../config/config.js";
-import {Job} from "../entities/job.entity.js";
+import Job from "../entities/job.entity.js";
 import JobValidation from "../validation/job.validation.js";
 import UploadService from "./upload.service.js";
 
