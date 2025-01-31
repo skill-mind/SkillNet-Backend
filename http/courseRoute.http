@@ -5,7 +5,7 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "title": "Introduction to Blockchain",
+  "title": "Advance Blockchain",
   "description": "Learn the basics of blockchain technology",
   "instructorId": 1,
   "level": "beginner",
@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ### Delete a course
-DELETE {{baseUrl}}/1
+DELETE {{baseUrl}}/4
 
 ### Create another course
 POST {{baseUrl}}

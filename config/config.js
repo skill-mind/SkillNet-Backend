@@ -7,17 +7,6 @@ import {Job}  from "../entities/job.entity.js"
 
 dotenv.config()
 
-function logDatabaseConfig() {
-  console.log("Database Configuration:")
-  console.log(`Host: ${process.env.DB_HOST || "localhost"}`)
-  console.log(`Port: ${process.env.DB_PORT || "5432"}`)
-  console.log(`Username: ${process.env.DB_USER}`)
-  console.log(`Database: ${process.env.DB_NAME}`)
-  console.log(`Password is set: ${Boolean(process.env.DB_PASSWORD)}`)
-}
-
-logDatabaseConfig()
-
 const AppDataSource = new DataSource({
   type: "postgres",
   host: process.env.DB_HOST,
