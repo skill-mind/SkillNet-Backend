@@ -1,38 +1,45 @@
 import express from "express"
 import multer from "multer"
-import courseController from "../controllers/course.controller.js"
 import { authenticateToken, isInstructor } from "../middlewares/auth.middleware.js"
+import CourseController from "../controllers/course.controller.js"
 
 const router = express.Router()
+const upload = multer()
 
-// Configure multer for file upload
-const storage = multer.diskStorage({
-  destination: "./uploads/courses",
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9)
-    cb(null, file.fieldname + "-" + uniqueSuffix + "." + file.originalname.split(".").pop())
-  },
-})
+router.post(
+  "/",
+  authenticateToken,
+  isInstructor,
+  upload.fields([
+    { name: "courseMaterial", maxCount: 1 },
+    { name: "courseVideo", maxCount: 1 },
+  ]),
+  CourseController.createCourse,
+)
 
-const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB limit
-  },
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith("image/") || file.mimetype === "application/pdf") {
-      cb(null, true)
-    } else {
-      cb(new Error("Only image and PDF files are allowed!"), false)
-    }
-  },
-})
+router.get("/", CourseController.getAllCourses)
+router.get("/:id", CourseController.getCourseById)
 
-router.post("/", authenticateToken, isInstructor, upload.single("courseMaterial"), courseController.createCourse)
-router.get("/", courseController.getAllCourses)
-router.get("/:id", courseController.getCourseById)
-router.put("/:id", authenticateToken, isInstructor, upload.single("courseMaterial"), courseController.updateCourse)
-router.delete("/:id", authenticateToken, isInstructor, courseController.deleteCourse)
+router.put(
+  "/:id",
+  authenticateToken,
+  isInstructor,
+  upload.fields([
+    { name: "courseMaterial", maxCount: 1 },
+    { name: "courseVideo", maxCount: 1 },
+  ]),
+  CourseController.updateCourse,
+)
+
+router.delete("/:id", authenticateToken, isInstructor, CourseController.deleteCourse)
+
+router.put(
+  "/:id/video",
+  authenticateToken,
+  isInstructor,
+  upload.single("courseVideo"),
+  CourseController.updateCourseVideo,
+)
 
 export default router
 

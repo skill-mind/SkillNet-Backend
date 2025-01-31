@@ -95,7 +95,26 @@ export const CourseService = {
       throw new CourseError("Failed to delete course")
     }
   },
+
+  async updateCourseVideo(id, videoUrl) {
+    try {
+      const updateResult = await courseRepository.update(id, { videoUrl })
+      if (updateResult.affected === 0) {
+        throw new CourseError("Course not found", 404)
+      }
+      const updatedCourse = await courseRepository.findOneBy({ id })
+      if (!updatedCourse) {
+        throw new CourseError("Failed to fetch updated course")
+      }
+      return updatedCourse
+    } catch (error) {
+      if (error instanceof CourseError) {
+        throw error
+      }
+      throw new CourseError("Failed to update course video")
+    }
+  },
 }
 
-// export default courseService
+// export default CourseService
 

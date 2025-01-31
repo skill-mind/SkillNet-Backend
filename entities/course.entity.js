@@ -30,6 +30,10 @@ export const Course = new EntitySchema({
       type: "int",
       nullable: true,
     },
+    videoUrl: {
+      type: "varchar",
+      nullable: true,
+    },
     createdAt: {
       type: "timestamp",
       createDate: true,

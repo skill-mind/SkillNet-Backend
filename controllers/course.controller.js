@@ -91,6 +91,35 @@ class CourseController {
       }
     }
   }
+
+  async updateCourseVideo(req, res) {
+    try {
+      const { error: idError, value: idValue } = courseValidation.courseIdParam.validate({ id: req.params.id })
+      if (idError) {
+        return res.status(400).json({ message: idError.details[0].message })
+      }
+
+      if (!req.file) {
+        return res.status(400).json({ message: "No video file uploaded" })
+      }
+
+      const videoUrl = `/uploads/courses/videos/${req.file.filename}`
+
+      const { error, value } = courseValidation.updateCourseVideo.validate({ videoUrl })
+      if (error) {
+        return res.status(400).json({ message: error.details[0].message })
+      }
+
+      const updatedCourse = await CourseService.updateCourseVideo(idValue.id, value.videoUrl)
+      if (updatedCourse) {
+        res.json(updatedCourse)
+      } else {
+        res.status(404).json({ message: "Course not found" })
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Error updating course video", error: error.message })
+    }
+  }
 }
 
 export default new CourseController()
