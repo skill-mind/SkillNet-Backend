@@ -1,68 +1,68 @@
-import { EntitySchema } from "typeorm";
+import { EntitySchema } from 'typeorm';
 
 const UserEntity = new EntitySchema({
-  name: "User",
-  tableName: "users",
+  name: 'User',
+  tableName: 'users',
   columns: {
     id: {
       primary: true,
-      type: "int",
+      type: 'int',
       generated: true,
     },
     walletAddress: {
-      type: "varchar",
+      type: 'varchar',
       unique: true,
     },
     role: {
-      type: "varchar",
+      type: 'varchar',
       length: 20,
     },
     name: {
-      type: "varchar",
+      type: 'varchar',
       length: 100,
     },
     email: {
-      type: "varchar",
+      type: 'varchar',
       unique: true,
     },
     title: {
-      type: "varchar",
+      type: 'varchar',
       length: 100,
       nullable: true,
     },
     bio: {
-      type: "text",
+      type: 'text',
       nullable: true,
     },
     skills: {
-      type: "simple-array",
+      type: 'simple-array',
       nullable: true,
     },
     createdAt: {
-      type: "timestamp",
+      type: 'timestamp',
       createDate: true,
     },
   },
   relations: {
     courses: {
-      type: "many-to-many",
-      target: "Course",
+      type: 'many-to-many',
+      target: 'Course',
       joinTable: {
-        name: "user_courses",
+        name: 'user_courses',
         joinColumn: {
-          name: "userId",
-          referencedColumnName: "id",
+          name: 'userId',
+          referencedColumnName: 'id',
         },
         inverseJoinColumn: {
-          name: "courseId",
-          referencedColumnName: "id",
+          name: 'courseId',
+          referencedColumnName: 'id',
         },
       },
     },
     userCourses: {
-      type: "one-to-many",
-      target: "UserCourse",
-      inverseSide: "user",
+      type: 'one-to-many',
+      target: 'UserCourse',
+      inverseSide: 'user',
     },
   },
   indices: [
@@ -70,6 +70,6 @@ const UserEntity = new EntitySchema({
     { columns: ['email'] },
     { columns: ['role'] }, // Index role if querying by it frequently
   ],
-})
+});
 
 export default UserEntity

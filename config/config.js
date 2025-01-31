@@ -1,9 +1,9 @@
 import dotenv from "dotenv"
-import { DataSource } from "typeorm"
+import { DataSource } from "typeorm";
 import { Course } from "../entities/course.entity.js"
 import { UserCourse } from "../entities/userCourse.entity.js"
-import  UserEntity  from "../entities/user.entity.js"
-import Job  from "../entities/job.entity.js"
+import  UserEntity  from "../entities/user.entity.js";
+import Job  from "../entities/job.entity.js";
 
 dotenv.config()
 
