@@ -1,6 +1,6 @@
 import { EntitySchema } from "typeorm"
 
-export const User = new EntitySchema({
+const User = new EntitySchema({
   name: "User",
   tableName: "users",
   columns: {
@@ -68,3 +68,4 @@ export const User = new EntitySchema({
   indices: [{ columns: ["walletAddress"] }, { columns: ["email"] }, { columns: ["role"] }],
 })
 
+export default User

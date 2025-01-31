@@ -1,6 +1,6 @@
 import { EntitySchema } from 'typeorm';
 
-export const Job = new EntitySchema({
+const Job = new EntitySchema({
   name: 'Job',
   tableName: 'jobs',
   columns: {
@@ -59,3 +59,4 @@ export const Job = new EntitySchema({
   ]
 });
 
+export default Job
