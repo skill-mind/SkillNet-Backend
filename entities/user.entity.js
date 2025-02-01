@@ -17,7 +17,6 @@ const UserEntity = new EntitySchema({
       type: 'varchar',
       length: 20,
     },
-    // Generalizes to job seeker/employer/institution name
     name: {
       type: 'varchar',
       length: 100,
@@ -26,18 +25,15 @@ const UserEntity = new EntitySchema({
       type: 'varchar',
       unique: true,
     },
-    // Tutor-specific (nullable)
     title: {
       type: 'varchar',
       length: 100,
       nullable: true,
     },
-    // Used as bio (Job Seeker, Tutor, Institution)/description (Company)
     bio: {
       type: 'text',
       nullable: true,
     },
-    // Tutor-specific (nullable)
     skills: {
       type: 'simple-array',
       nullable: true,
@@ -47,6 +43,28 @@ const UserEntity = new EntitySchema({
       createDate: true,
     },
   },
+  relations: {
+    courses: {
+      type: 'many-to-many',
+      target: 'Course',
+      joinTable: {
+        name: 'user_courses',
+        joinColumn: {
+          name: 'userId',
+          referencedColumnName: 'id',
+        },
+        inverseJoinColumn: {
+          name: 'courseId',
+          referencedColumnName: 'id',
+        },
+      },
+    },
+    userCourses: {
+      type: 'one-to-many',
+      target: 'UserCourse',
+      inverseSide: 'user',
+    },
+  },
   indices: [
     { columns: ['walletAddress'] },
     { columns: ['email'] },
@@ -54,4 +72,4 @@ const UserEntity = new EntitySchema({
   ],
 });
 
-export default UserEntity;
+export default UserEntity
