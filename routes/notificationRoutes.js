@@ -1,7 +1,9 @@
 import express from "express";
 import NotificationController from "../controllers/notificationController.js";
+import { authenticateToken } from "../middlewares/auth.middleware.js"
 
 const router = express.Router();
+router.use(authenticateToken);
 
 router.post("/", NotificationController.create);
 router.get("/", NotificationController.findAll);
