@@ -5,13 +5,13 @@ import { authenticateToken } from "../middlewares/auth.middleware.js"
 const router = express.Router();
 router.use(authenticateToken);
 
-router.post("/", NotificationController.create);
-router.get("/", NotificationController.findAll);
-router.get("/:id", NotificationController.findById);
-router.get("/sender/:senderId", NotificationController.findBySender);
-router.get("/receiver/:receiverId", NotificationController.findByReceiver);
-router.get("/type/:type", NotificationController.findByType);
-router.put("/:id", NotificationController.update);
-router.delete("/:id", NotificationController.delete);
+router.post("/", (req, res) => NotificationController.create(req, res));
+router.get("/", (req, res) => NotificationController.findAll(req, res));
+router.get("/:id", (req, res) => NotificationController.findById(req, res));
+router.get("/sender/:senderId", (req, res) => NotificationController.findBySender(req, res));
+router.get("/receiver/:receiverId", (req, res) => NotificationController.findByReceiver(req, res));
+router.get("/type/:type", (req, res) => NotificationController.findByType(req, res));
+router.put("/:id", (req, res) => NotificationController.update(req, res));
+router.delete("/:id", (req, res) => NotificationController.delete(req, res));
 
 export default router;
