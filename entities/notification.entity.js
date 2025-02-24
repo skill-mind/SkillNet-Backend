@@ -17,9 +17,13 @@ const Notification = new EntitySchema({
       type: "int",
       nullable: false,
     },
+    notificationType: {
+      type: "varchar", //represents the type of notification for which dashboard it will be displayed
+      nullable: true 
+    },
     type: {
       type: "enum",
-      enum: ["exam", "certification", "candidate"],
+      enum: ["exam", "certification", "candidate", "new-student", "question", "payment", "announcement", "message", "new-request"],
       nullable: false,
     },
     message: {
