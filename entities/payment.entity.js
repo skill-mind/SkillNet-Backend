@@ -1,6 +1,6 @@
 import { EntitySchema } from 'typeorm';
 
-const PaymentEntity = new EntitySchema({
+export const Payment = new EntitySchema({
     name: 'Payment',
     tableName: 'payment',
     columns: {
@@ -69,5 +69,3 @@ const PaymentEntity = new EntitySchema({
         }
     }
 });
-
-export default PaymentEntity;
