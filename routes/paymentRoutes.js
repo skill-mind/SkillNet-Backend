@@ -9,3 +9,15 @@ router.post(
     authenticateToken,
     PaymentController.createPayment
 );
+
+router.get(
+    "/",
+    authenticateToken,
+    PaymentController.getAllPayments
+);
+
+router.get(
+    "/:id",
+    authenticateToken,
+    PaymentController.getPaymentById
+);
