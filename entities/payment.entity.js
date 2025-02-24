@@ -25,7 +25,7 @@ export const Payment = new EntitySchema({
         amount: {
             type: 'decimal',
             precision: 10,
-            scale: 2,
+            scale: 5,
             nullable: false,
         },
         payment_code: {

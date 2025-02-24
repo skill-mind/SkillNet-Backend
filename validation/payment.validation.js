@@ -27,11 +27,11 @@ export const createPaymentValidation = (data) => {
             }),
 
         amount: Joi.number()
-            .precision(10).positive().required()
+            .precision(5).positive().required()
             .messages({
                 "number.base": "Amount must be a number.",
                 "number.positive": "Amount must be a positive number.",
-                "number.precision": "Amount must have at most 10 decimal places.",
+                "number.precision": "Amount must have at most 5 decimal places.",
                 "any.required": "Amount is required."
             }),
 
