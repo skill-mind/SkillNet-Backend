@@ -1,6 +1,8 @@
 import { PaymentService } from "../services/paymentServices";
 import { AppError } from "../utils/errors";
-import { createPaymentValidation } from "../validation/payment.validation";
+import {
+    createPaymentValidation, updatePaymentValidation
+} from "../validation/payment.validation";
 
 
 class PaymentController {
@@ -44,6 +46,32 @@ class PaymentController {
             } else {
                 res.status(400).json({ message: error.message });
             }
+        }
+    }
+
+    async updatePayment(req, res) {
+        try {
+            const id = req.params.id;
+            const data = updatePaymentValidation(req.body);
+            const payment = await this.paymentService.updatePayment(id, data);
+
+            res.status(200).json({ data: payment });
+        } catch (error) {
+            if (error instanceof AppError) {
+                res.status(error.statusCode).json({ message: error.message });
+            } else {
+                res.status(400).json({ message: error.message });
+            }
+        }
+    }
+
+    async deletePayment(req, res) {
+        try {
+            const id = req.params.id;
+            await this.paymentService.deletePayment(id);
+            res.status(200).json({ message: "Delete operation was successful"});
+        } catch (error) {
+            res.status(400).json({ error: error.message });
         }
     }
 }

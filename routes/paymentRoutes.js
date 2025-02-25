@@ -21,3 +21,15 @@ router.get(
     authenticateToken,
     PaymentController.getPaymentById
 );
+
+router.put(
+    "/:id",
+    authenticateToken,
+    PaymentController.updatePayment
+);
+
+router.delete(
+    "/:id",
+    authenticateToken,
+    PaymentController.deletePayment
+)

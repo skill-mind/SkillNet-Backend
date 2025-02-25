@@ -33,4 +33,17 @@ export class PaymentService {
 
         return payment;
     }
+
+    async updatePayment(id, updateData) {
+        const payment = await this.getPaymentByid(id);
+        Object.assign(payment, updateData);
+
+        return this.repository.save(payment);
+    }
+
+    async deletePayment(id) {
+        const payment = await this.getPaymentByid(id);
+
+        return this.repository.delete(id);
+    }
 }
