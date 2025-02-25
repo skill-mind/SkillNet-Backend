@@ -21,8 +21,8 @@ export class PaymentService {
         return this.repository.save(payment);
     }
 
-    async getAllPayments() {
-        return this.repository.find();
+    async getAllPayments(filter) {
+        return this.repository.find({ where: filter });
     }
 
     async getPaymentByid(id) {
