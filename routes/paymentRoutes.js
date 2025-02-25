@@ -7,43 +7,43 @@ const router = express.Router();
 router.post(
     "/",
     authenticateToken,
-    PaymentController.createPayment
+    (req, res) => PaymentController.createPayment(req, res)
 );
 
 router.get(
     "/sender/:id",
     authenticateToken,
-    PaymentController.getSenderPayments
+    (req, res) => PaymentController.getSenderPayments(req, res)
 );
 
 router.get(
     "/receiver/:id",
     authenticateToken,
-    PaymentController.getReceiverPayments
+    (req, res) => PaymentController.getReceiverPayments(req, res)
 );
 
 router.get(
     "/",
     authenticateToken,
-    PaymentController.getAllPayments
+    (req, res) => PaymentController.getAllPayments(req, res)
 );
 
 router.get(
     "/:id",
     authenticateToken,
-    PaymentController.getPaymentById
+    (req, res) => PaymentController.getPaymentById(req, res)
 );
 
 router.put(
     "/:id",
     authenticateToken,
-    PaymentController.updatePayment
+    (req, res) => PaymentController.updatePayment(req, res)
 );
 
 router.delete(
     "/:id",
     authenticateToken,
-    PaymentController.deletePayment
+    (req, res) => PaymentController.deletePayment(req, res)
 );
 
 export default router;
