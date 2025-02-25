@@ -1,8 +1,8 @@
-import { PaymentService } from "../services/paymentServices";
-import { AppError } from "../utils/errors";
+import { PaymentService } from "../services/paymentServices.js";
+import { AppError } from "../utils/errors.js";
 import {
     createPaymentValidation, updatePaymentValidation
-} from "../validation/payment.validation";
+} from "../validation/payment.validation.js";
 
 
 class PaymentController {
@@ -20,6 +20,7 @@ class PaymentController {
 
             res.status(201).json({ data: payment });
         } catch (error) {
+            console.log(error);
             res.status(400).json({ message: error.message });
         }
     }

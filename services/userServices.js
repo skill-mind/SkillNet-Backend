@@ -1,6 +1,6 @@
-import AppDataSource from "../config/config";
-import { AppError } from "../utils/errors";
-import User from "../entities/user.entity";
+import AppDataSource from "../config/config.js";
+import { AppError } from "../utils/errors.js";
+import User from "../entities/user.entity.js";
 
 class UserService {
     constructor() {

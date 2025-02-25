@@ -1,7 +1,7 @@
-import AppDataSource from "../config/config";
-import { Payment } from "../entities/payment.entity";
-import userService from "../services/userServices";
-import { AppError } from "../utils/errors";
+import AppDataSource from "../config/config.js";
+import { Payment } from "../entities/payment.entity.js";
+import userService from "../services/userServices.js";
+import { AppError } from "../utils/errors.js";
 
 export class PaymentService {
     constructor() {
