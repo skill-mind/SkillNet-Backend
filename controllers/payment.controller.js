@@ -1,5 +1,6 @@
 import { PaymentService } from "../services/paymentServices.js";
 import { AppError } from "../utils/errors.js";
+import { idParamValidation } from "../validation/common.validation.js";
 import {
     createPaymentValidation, updatePaymentValidation
 } from "../validation/payment.validation.js";
@@ -20,14 +21,13 @@ class PaymentController {
 
             res.status(201).json({ data: payment });
         } catch (error) {
-            console.log(error);
             res.status(400).json({ message: error.message });
         }
     }
 
     async getSenderPayments(req, res) {
         try {
-            const senderId = req.params.id;
+            const senderId = idParamValidation(req.params);
             const payments = await this.paymentService.getSenderPayments(senderId);
 
             res.status(200).json({ data: payments });
@@ -82,9 +82,12 @@ class PaymentController {
 
     async updatePayment(req, res) {
         try {
-            const id = req.params.id;
-            const data = updatePaymentValidation(req.body);
-            const payment = await this.paymentService.updatePayment(id, data);
+            const id = idParamValidation(req.params);
+            const { error, value } = updatePaymentValidation(req.body);
+            if (error) {
+                return res.status(400).json({ message: error.details[0].message });
+            }
+            const payment = await this.paymentService.updatePayment(id, value);
 
             res.status(200).json({ data: payment });
         } catch (error) {
