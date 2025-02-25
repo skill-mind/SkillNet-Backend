@@ -32,4 +32,6 @@ router.delete(
     "/:id",
     authenticateToken,
     PaymentController.deletePayment
-)
+);
+
+export default router;
