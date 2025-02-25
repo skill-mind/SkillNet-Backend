@@ -1,0 +1,51 @@
+@baseUrl = http://localhost:5000/api/exams
+
+### ✅ Create a new exam (Fixed)
+POST {{baseUrl}}/create
+Content-Type: application/json
+
+{
+  "title": "english Exam",
+  "description": "Final math exam for high school students",
+  "createdBy": 1
+}
+
+### ✅ Get all exams
+GET {{baseUrl}}
+
+### ✅ Get a specific exam
+GET {{baseUrl}}/1
+
+### ✅ Update an exam (New Route Added)
+PUT {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  "title": "Advanced Math Exam",
+  "description": "Updated details for the math exam"
+}
+
+### ✅ Delete an exam (New Route Added)
+DELETE {{baseUrl}}/4
+
+### ✅ Register a user for an exam
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+  "examId": 1,
+  "userId": 2
+}
+
+### ✅ Submit exam answers
+POST {{baseUrl}}/submit
+Content-Type: application/json
+
+{
+  "examId": 1,
+  "userId": 2,
+  "answers": [
+    { "questionId": 1, "answer": "B" },
+    { "questionId": 2, "answer": "C" }
+  ]
+}
