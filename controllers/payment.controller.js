@@ -24,6 +24,36 @@ class PaymentController {
         }
     }
 
+    async getSenderPayments(req, res) {
+        try {
+            const senderId = req.params.id;
+            const payments = await this.paymentService.getSenderPayments(senderId);
+
+            res.status(200).json({ data: payments });
+        } catch (error) {
+            if (error instanceof AppError) {
+                res.status(error.statusCode).json({ message: error.message });
+            } else {
+                res.status(400).json({ message: error.message });
+            }
+        }
+    }
+
+    async getReceiverPayments(req, res) {
+        try {
+            const receiverId = req.params.id;
+            const payments = await this.paymentService.getReceiverPayments(receiverId);
+
+            res.status(200).json({ data: payments });
+        } catch (error) {
+            if (error instanceof AppError) {
+                res.status(error.statusCode).json({ message: error.message });
+            } else {
+                res.status(400).json({ message: error.message });
+            }
+        }
+    }
+
     async getAllPayments(req, res) {
         try {
             const payments = await this.paymentService.getAllPayments();

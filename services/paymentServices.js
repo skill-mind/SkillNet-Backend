@@ -1,5 +1,6 @@
 import AppDataSource from "../config/config";
 import { Payment } from "../entities/payment.entity";
+import userService from "../services/userServices";
 import { AppError } from "../utils/errors";
 
 export class PaymentService {
@@ -23,6 +24,18 @@ export class PaymentService {
 
     async getAllPayments(filter) {
         return this.repository.find({ where: filter });
+    }
+
+    async getSenderPayments(senderId) {
+        const sender = await userService.getUserById(senderId);
+
+        return this.getAllPayments({ senderId });
+    }
+
+    async getReceiverPayments(receiverId) {
+        const receiver = await userService.getUserById(receiverId);
+
+        return this.getAllPayments({ receiverId });
     }
 
     async getPaymentByid(id) {

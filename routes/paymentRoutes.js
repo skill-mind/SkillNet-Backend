@@ -11,6 +11,18 @@ router.post(
 );
 
 router.get(
+    "/sender/:id",
+    authenticateToken,
+    PaymentController.getSenderPayments
+);
+
+router.get(
+    "/receiver/:id",
+    authenticateToken,
+    PaymentController.getReceiverPayments
+);
+
+router.get(
     "/",
     authenticateToken,
     PaymentController.getAllPayments
