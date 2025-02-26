@@ -5,7 +5,8 @@ import cors from "cors";
 import AppDataSource from "./config/config.js";
 import authRouter from "./routes/auth.routes.js";
 import jobRoutes from "./routes/jobRoutes.js";
-import courseRoutes from "./routes/courseRoutes.js";
+import courseRoutes from "./routes/courseRoutes.js";import notificationRoutes from "./routes/notificationRoutes.js"
+
 import examRoutes from "./routes/examRoutes.js"; // ✅ Import Exam Routes
 const PORT = process.env.PORT || 5000;
 
@@ -24,6 +25,7 @@ AppDataSource.initialize()
     app.use("/api/auth", authRouter);
     app.use("/api/jobs", jobRoutes);
     app.use("/api/courses", courseRoutes);
+    app.use("/api/notifications", notificationRoutes)
     app.use("/api/exams", examRoutes); // ✅ Add Exam Routes
 
     // Error Handling Middleware
