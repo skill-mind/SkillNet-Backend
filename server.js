@@ -5,7 +5,8 @@ import cors from "cors";
 import AppDataSource from "./config/config.js";
 import authRouter from "./routes/auth.routes.js";
 import jobRoutes from "./routes/jobRoutes.js";
-import courseRoutes from "./routes/courseRoutes.js";import notificationRoutes from "./routes/notificationRoutes.js"
+import courseRoutes from "./routes/courseRoutes.js";
+import notificationRoutes from "./routes/notificationRoutes.js"
 
 import examRoutes from "./routes/examRoutes.js"; // ✅ Import Exam Routes
 const PORT = process.env.PORT || 5000;
