@@ -4,6 +4,7 @@ import { Course } from "../entities/course.entity.js"
 import { UserCourse } from "../entities/userCourse.entity.js"
 import  UserEntity  from "../entities/user.entity.js";
 import Job  from "../entities/job.entity.js";
+import Notification from "../entities/notification.entity.js";
 import { Payment } from "../entities/payment.entity.js";
 
 dotenv.config()
@@ -17,7 +18,7 @@ const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: true,
-  entities: [Payment, UserEntity, Course, UserCourse, Job],
+  entities: [UserEntity, Course, UserCourse, Job, Notification, Payment],
   subscribers: [],
   migrations: [],
 })
