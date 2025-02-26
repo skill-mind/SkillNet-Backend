@@ -1,0 +1,30 @@
+POST http://localhost:5000/api/exams/create
+Content-Type: application/json
+
+{
+  "title": "Math Exam 200",
+  "createdBy": 5,
+  "role":"admin"
+}
+
+POST http://localhost:5000/api/auth/signin
+Content-Type: application/json
+
+{
+  "walletAddress": "0xabcdfvssldf12345"
+}
+
+POST http://localhost:5000/api/users/create
+Content-Type: application/json
+
+{
+  "walletAddress": "0xabcdfvssldf12345",
+  "role": "student",
+  "name": "Alicdsse Johnson",
+  "email": "aliscde@example.com",
+  "title": "Developer",
+  "bio": "Loves coding",
+  "skills": ["JavaScript", "Node.js", "React"]
+}
+
+
