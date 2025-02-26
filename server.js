@@ -4,7 +4,8 @@ import express, { json } from 'express';
 import authRouter from './routes/auth.routes.js';
 import jobRoutes from './routes/jobRoutes.js';
 import courseRoutes from "./routes/courseRoutes.js"
-import notificationRoutes from "./routes/notificationRoutes.js"
+import notificationRoutes from "./routes/notificationRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 import helmet from 'helmet';
 import cors from 'cors';
@@ -25,8 +26,9 @@ AppDataSource.initialize()
     // Routes
     app.use('/api/auth', authRouter);
     app.use('/api/jobs', jobRoutes);
-    app.use("/api/courses", courseRoutes)
-    app.use("/api/notifications", notificationRoutes)
+    app.use("/api/courses", courseRoutes);
+    app.use("/api/notifications", notificationRoutes);
+    app.use("/api/payments", paymentRoutes);
     
     // Error handling
     app.use((err, req, res, next) => {
