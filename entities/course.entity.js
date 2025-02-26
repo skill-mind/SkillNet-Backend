@@ -42,7 +42,7 @@ export const Course = new EntitySchema({
   relations: {
     users: {
       type: "many-to-many",
-      target: "UserEntity",
+      target: "User",
       joinTable: {
         name: "user_courses",
         joinColumn: {
