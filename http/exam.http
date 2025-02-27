@@ -1,0 +1,52 @@
+### Admin - Create New Exam
+//kindly fill out afterjwt token has been created
+POST http://localhost:5000/api/exams
+Authorization: Bearer <YOUR_ADMIN_JWT_TOKEN>
+Content-Type: application/json
+
+{
+  "title": "Midterm Exam 2025",
+  "description": "Exam covering chapters 1 to 5."
+}
+
+### Admin - Get All Exams
+GET http://localhost:5000/api/exams
+Authorization: Bearer <YOUR_ADMIN_JWT_TOKEN>
+Content-Type: application/json
+
+### Admin - Get Exam By ID
+GET http://localhost:5000/api/exams/1
+Authorization: Bearer <YOUR_ADMIN_JWT_TOKEN>
+Content-Type: application/json
+
+### Admin - Update Exam
+PUT http://localhost:5000/api/exams/1
+Authorization: Bearer <YOUR_ADMIN_JWT_TOKEN>
+Content-Type: application/json
+
+{
+  "title": "Midterm Exam 2025 - Updated",
+  "description": "Updated exam details."
+}
+
+### Admin - Delete Exam
+DELETE http://localhost:5000/api/exams/1
+Authorization: Bearer <YOUR_ADMIN_JWT_TOKEN>
+Content-Type: application/json
+
+### Student - Register for Exam (Submit Answers)
+POST http://localhost:5000/api/exams/1/register
+Authorization: Bearer <YOUR_STUDENT_JWT_TOKEN>
+Content-Type: application/json
+
+{
+  "answers": {
+    "Q1": "Answer to question 1",
+    "Q2": "Answer to question 2"
+  }
+}
+
+### Admin - Get Exam Registrations
+GET http://localhost:5000/api/exams/1/registrations
+Authorization: Bearer <YOUR_ADMIN_JWT_TOKEN>
+Content-Type: application/json
