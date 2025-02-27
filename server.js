@@ -24,6 +24,7 @@ AppDataSource.initialize()
   app.use(json());
     
     // Routes
+    app.use("/api/exams", examRoutes);
     app.use('/api/auth', authRouter);
     app.use('/api/jobs', jobRoutes);
     app.use("/api/courses", courseRoutes);
